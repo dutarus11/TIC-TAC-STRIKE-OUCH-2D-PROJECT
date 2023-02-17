@@ -16,6 +16,10 @@ public class GameController : MonoBehaviour
     public bool timerActive = false;
     public Text timerTxt;
 
+    private float minSec = 0;
+    private float timeNum = 60;
+    private float timeNum2 = 1;
+    
     private void Start()
     {
         winUI.SetActive(false);
@@ -50,12 +54,13 @@ public class GameController : MonoBehaviour
     {
         loseUI.SetActive(true);
     }
+   
     //the timer
     public void Timer()
     {
         if (timerActive)
         {
-            if (timeRemaining > 0 )
+            if (timeRemaining > minSec)
             {
                 timeRemaining -= Time.deltaTime;
                 UpdateTimer(timeRemaining);
@@ -63,16 +68,16 @@ public class GameController : MonoBehaviour
             else
             {
                 Debug.Log("Your time is up! HAHAHAHAHA!");
-                timeRemaining = 0;
+                timeRemaining = minSec;
                 timerActive = false; 
             }
         }
 
         void UpdateTimer(float currentTime)
         {
-            currentTime += 1;
-            float mins = Mathf.FloorToInt(currentTime / 60);
-            float secs = Mathf.FloorToInt(currentTime % 60);
+            currentTime += timeNum2;
+            float mins = Mathf.FloorToInt(currentTime / timeNum);
+            float secs = Mathf.FloorToInt(currentTime % timeNum);
             timerTxt.text = string.Format("{0:00} : {1:00}", mins, secs);
         }
     }

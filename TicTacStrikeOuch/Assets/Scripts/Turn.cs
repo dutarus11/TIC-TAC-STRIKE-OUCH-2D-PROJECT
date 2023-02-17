@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Turn : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     GameObject gameBoard;
     GameController gameController;
-
+    
 
     [SerializeField]
     public GameObject vfx;
     [SerializeField]
     public int count;
-       
+    private float minTime = 0;
+    private float seconds = 3;
     public Sprite[] images;
    
     bool nonPlayed = true;
@@ -36,13 +38,15 @@ public class Turn : MonoBehaviour
         vfx.SetActive(true);
         gameController.UpdateCount(count);
         
-        if (gameController.currentCount == 0 && gameController.timeRemaining > 0)
+        if (gameController.currentCount == minTime && gameController.timeRemaining > minTime)
         {
             gameController.WinningUI();
+            StartCoroutine(ResetCoroutine());
         }
-        else if(gameController.currentCount >= 0 && gameController.timeRemaining <= 0)
+        else if(gameController.currentCount >= minTime && gameController.timeRemaining <= minTime)
         {
             gameController.LosingUI();
+            StartCoroutine(ResetCoroutine());
         }
     }
     private void Awake()
@@ -52,5 +56,15 @@ public class Turn : MonoBehaviour
         gameController = GameObject.FindObjectOfType<GameController>();
     }
 
+    //reset the game 
+    IEnumerator ResetCoroutine()
+    {
+        yield return new WaitForSeconds(seconds);
+        ResetGame();
+    }
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
    
 }
