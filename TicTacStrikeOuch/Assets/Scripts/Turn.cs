@@ -10,20 +10,28 @@ public class Turn : MonoBehaviour
     GameController gameController;
     
 
-    [SerializeField]
+    
     public GameObject vfx;
-    [SerializeField]
+   
+    
     public int count;
+    
     private float minTime = 0;
     private float seconds = 3;
+
     public Sprite[] images;
-   
+
+    
+    public AudioSource audioSourceSFX;
+    
+
     bool nonPlayed = true;
+    bool audioIsActive = false;
 
     private void Start()
     {
         spriteRenderer.sprite = null;
-        vfx.SetActive(false);
+        vfx.SetActive(false);               
     }
 
     private void OnMouseDown()
@@ -32,10 +40,16 @@ public class Turn : MonoBehaviour
         {
             int index = gameBoard.GetComponent<GameController>().PlayerTurn();
             spriteRenderer.sprite = images[index];
-            nonPlayed = false;            
+            nonPlayed = false;           
         }
         
         vfx.SetActive(true);
+        audioIsActive = true;
+
+       
+        AudioSFX();
+        
+        
         gameController.UpdateCount(count);
         
         if (gameController.currentCount == minTime && gameController.timeRemaining > minTime)
@@ -66,5 +80,11 @@ public class Turn : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-   
+
+    //sound effect
+    public void AudioSFX()
+    {
+        audioSourceSFX.Play();
+        Debug.Log("sfx in effect");
+    }
 }
