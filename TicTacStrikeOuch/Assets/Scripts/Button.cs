@@ -4,19 +4,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Button : MonoBehaviour
 {
+
+    string level = "Level";
+    string title = "Title";
+    string exit = "Exit";
+    
     //Button Functions 
     public void StartButton()
     {
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene(level);
     }
 
     public void QuitButton()
     {
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene(title);
     }
     public void ExitButton()
     {
-        Debug.Log("Exit Game");
+        Debug.Log(exit);
         Application.Quit();
     }
 }

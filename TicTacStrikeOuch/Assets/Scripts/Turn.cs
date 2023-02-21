@@ -8,26 +8,20 @@ public class Turn : MonoBehaviour
     SpriteRenderer spriteRenderer;
     GameObject gameBoard;
     GameController gameController;
-    
-
-    
+       
     public GameObject vfx;
-   
-    
+      
     public int count;
     
+    public Sprite[] images;
+   
+    public AudioSource audioSourceSFX;
+
     private float minTime = 0;
     private float seconds = 3;
 
-    public Sprite[] images;
-
-    
-    public AudioSource audioSourceSFX;
-    
-
     bool nonPlayed = true;
-    bool audioIsActive = false;
-
+    
     private void Start()
     {
         spriteRenderer.sprite = null;
@@ -43,13 +37,10 @@ public class Turn : MonoBehaviour
             nonPlayed = false;           
         }
         
-        vfx.SetActive(true);
-        audioIsActive = true;
-
+        vfx.SetActive(true);        
        
         AudioSFX();
-        
-        
+                
         gameController.UpdateCount(count);
         
         if (gameController.currentCount == minTime && gameController.timeRemaining > minTime)
