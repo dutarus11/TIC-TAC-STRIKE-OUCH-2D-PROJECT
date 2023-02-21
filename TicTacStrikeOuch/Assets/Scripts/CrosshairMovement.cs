@@ -6,8 +6,7 @@ public class CrosshairMovement : MonoBehaviour
 {
 
     Vector3 pos;
-    public float speed = 1f;
-
+    
     private void Awake()
     {
         Cursor.visible = false;

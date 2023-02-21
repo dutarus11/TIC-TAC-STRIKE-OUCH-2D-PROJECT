@@ -5,21 +5,21 @@ using UnityEngine.SceneManagement;
 public class Button : MonoBehaviour
 {
 
-    string level = "Level";
-    string title = "Title";
-    string exit = "Exit";
+   private string level = "Level";
+   private string title = "Title";
+   private string exit = "Exit";
     
     //Button Functions 
-    public void StartButton()
+    private void StartButton()
     {
         SceneManager.LoadScene(level);
     }
 
-    public void QuitButton()
+    private void QuitButton()
     {
         SceneManager.LoadScene(title);
     }
-    public void ExitButton()
+    private void ExitButton()
     {
         Debug.Log(exit);
         Application.Quit();

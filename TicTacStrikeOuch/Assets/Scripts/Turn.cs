@@ -8,14 +8,15 @@ public class Turn : MonoBehaviour
     SpriteRenderer spriteRenderer;
     GameObject gameBoard;
     GameController gameController;
-       
-    public GameObject vfx;
-      
-    public int count;
-    
-    public Sprite[] images;
    
-    public AudioSource audioSourceSFX;
+    [SerializeField]   
+    private GameObject vfx;
+    [SerializeField]  
+    private int count;
+    [SerializeField]
+    private Sprite[] images;
+    [SerializeField]   
+    private AudioSource audioSourceSFX;
 
     private float minTime = 0;
     private float seconds = 3;
